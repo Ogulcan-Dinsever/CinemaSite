@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<head>
+    <!-- templatemo 418 form pack -->
+    <!--
+    Form Pack
+    http://www.templatemo.com/preview/templatemo_418_form_pack
+    -->
+    <title>Create Account</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css">
+    <link href="~/Templates/Login/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Templates/Login/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Templates/Login/templatemo_style.css" rel="stylesheet" />
+</head>
+<body class="templatemo-bg-gray">
+    <h1 class="margin-bottom-15">Create Account</h1>
+    <div class="container">
+        <div class="col-md-12">
+            <form class="form-horizontal templatemo-create-account templatemo-container" role="form" action="#" method="post">
+                <div class="form-inner">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="first_name" class="control-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" placeholder="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="last_name" class="control-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label for="username" class="control-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="password" class="control-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="password" class="control-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="password_confirm" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Create account" class="btn btn-info">
+                            <a href="/login" class="pull-right">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="~/Templates/Js/jquery-1.11.1.min.js"></script>
+    <script src="~/Templates/Js/bootstrap.min.js"></script>
+</body>
+</html>
