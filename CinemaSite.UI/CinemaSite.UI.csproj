@@ -189,6 +189,7 @@
     <Content Include="Views\Main\AddFilm.cshtml" />
     <Content Include="Views\Main\Films.cshtml" />
     <Content Include="Views\Main\Film.cshtml" />
+    <Content Include="Views\Main\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -32,6 +32,6 @@ namespace CinemaSite.Entities
 
         public bool? State { get; set; }
 
-        public bool? IsAdmin { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

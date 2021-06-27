@@ -34,9 +34,19 @@ namespace CinemaSite.API.Controllers
             return filmManager.List();
         }
 
+        public Film Remove(Film film)
+        {
+            return filmManager.Delete(film);
+        }
+        
         public Film GetFilm(Guid Id)
         {
             return filmManager.Find(Id);
+        }
+
+        public Film Edit(Film film)
+        {
+            return filmManager.Update(film);
         }
     }
 }

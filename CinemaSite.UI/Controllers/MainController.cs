@@ -33,16 +33,54 @@ namespace CinemaSite.UI.Controllers
             return View();
         }
 
+        public async Task<ActionResult> Delete(Guid Id)
+        {
+            Client();
+            var film = GetFilmById(Id);
+            await DeleteFilm(film);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(Guid Id)
+        {
+            Client();
+            var updatedFilm = GetFilmById(Id);
+            ViewBag.Categories = GetCategories();
+
+            return View(updatedFilm);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Film film, HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/images"), pic);
+                file.SaveAs(path);
+
+                film.ImageUrl = file.FileName;
+            }
+
+            Client();
+            GetFilmByModel(film);
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Film(Guid Id)
         {
             Client();
-            ViewBag.Film = GetFilm(Id);
+            ViewBag.Film = GetFilmById(Id);
 
             return View();
         }
 
         public ActionResult AddFilm()
         {
+            Client();
             ViewBag.Categories = GetCategories();
 
             return View();
@@ -127,9 +165,37 @@ namespace CinemaSite.UI.Controllers
             }
         }
 
-        public Film GetFilm(Guid Id)
+        public Film GetFilmById(Guid Id)
         {
             var response = client.GetAsync($"film/getfilm/{Id}").Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return response.Content.ReadAsAsync<Film>().Result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public async Task<Film> DeleteFilm(Film film)
+        {
+            var response = await client.PostAsJsonAsync($"film/remove", film);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return response.Content.ReadAsAsync<Film>().Result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Film GetFilmByModel(Film film)
+        {
+            var response = client.PostAsJsonAsync($"film/edit", film).Result;
 
             if (response.IsSuccessStatusCode)
             {

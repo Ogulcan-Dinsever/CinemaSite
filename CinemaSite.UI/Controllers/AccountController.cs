@@ -25,23 +25,20 @@ namespace CinemaSite.UI.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel model)
         {
-            client.BaseAddress = new Uri("http://localhost:44387/api/account/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add
-            (new MediaTypeWithQualityHeaderValue("application/json"));
+            Client();
 
-            var response = await client.PostAsJsonAsync("login", model);
+            var response = client.PostAsJsonAsync("login", model).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                ViewBag.Message = "Başarılı.";
+               Session["User"] = response.Content.ReadAsAsync<User>().Result;
             }
             else
             {
                 ViewBag.Message = "Başarısız.";
             }
 
-            return View();
+            return Redirect("/Main/Index");
         }
 
         public ActionResult Register()
@@ -49,13 +46,16 @@ namespace CinemaSite.UI.Controllers
             return View();
         }
 
+        public ActionResult LogOut()
+        {
+            Session["User"] = null;
+            return RedirectToAction("Login");
+        }
+
         [HttpPost]
         public async Task<ActionResult> Register (RegisterViewModel model)
         {
-            client.BaseAddress = new Uri("http://localhost:44387/api/account/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add
-            (new MediaTypeWithQualityHeaderValue("application/json"));
+            Client();
 
             var response = await client.PostAsJsonAsync("register", model);
 
@@ -68,7 +68,15 @@ namespace CinemaSite.UI.Controllers
                 ViewBag.Message = "Başarısız.";
             }
 
-            return View();
+            return RedirectToAction("Login");
+        }
+
+        public void Client()
+        {
+            client.BaseAddress = new Uri("http://localhost:44387/api/account/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add
+            (new MediaTypeWithQualityHeaderValue("application/json"));
         }
     }
 }
