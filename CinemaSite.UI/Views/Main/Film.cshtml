@@ -1,0 +1,23 @@
+﻿@using CinemaSite.Entities;
+
+@{
+    ViewBag.Title = "Film Detayı";
+
+    var film = (Film)ViewBag.Film;
+}
+
+<div id="templatemo_main_wrapper">
+    <div id="templatemo_main">
+        @if (ViewBag.Film != null)
+        {
+            <div id="content" class="float_l">
+                <div class="post">
+                    <div class="post_image"><img src="~/images/@film.ImageUrl" alt="@film.ImageUrl" height="260px" width="600px" /><span class="date">@film.CreatedDate</span></div>
+                    <h2>@film.Title</h2>
+                    <p>@film.Description</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="cleaner"></div>
