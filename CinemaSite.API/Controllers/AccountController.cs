@@ -1,4 +1,5 @@
 ﻿using CinemaSite.BLL;
+using CinemaSite.Entities;
 using CinemaSite.Entities.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -28,17 +29,17 @@ namespace CinemaSite.API.Controllers
             }
         }
 
-        public IHttpActionResult Login(LoginViewModel viewModel)
+        public User Login(LoginViewModel viewModel)
         {
-            var isLogin = userManager.Find(viewModel);
+            var user = userManager.Find(viewModel);
 
-            if (isLogin)
+            if (user != null)
             {
-                return Ok();
+                return user;
             }
             else
             {
-                return NotFound();
+                return null;
             }
         }
     }

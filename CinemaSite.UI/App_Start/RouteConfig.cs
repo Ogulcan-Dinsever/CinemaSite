@@ -14,6 +14,18 @@ namespace CinemaSite.UI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "FilmEdit",
+                url: "edit/{id}",
+                defaults: new { controller = "Main", action = "Edit" }
+            );
+
+            routes.MapRoute(
+                name: "FilmDelete",
+                url: "delete/{id}",
+                defaults: new { controller = "Main", action = "Delete" }
+            );
+
+            routes.MapRoute(
                 name: "CategoryDetail",
                 url: "filmler/{id}",
                 defaults: new { controller = "Main", action = "Films" }

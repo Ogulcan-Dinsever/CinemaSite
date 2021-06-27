@@ -53,21 +53,21 @@ namespace CinemaSite.BLL
             }
         }
 
-        public bool Find(LoginViewModel viewModel)
+        public User Find(LoginViewModel viewModel)
         {
             User user = repositoryUser.Find(x => x.Email == viewModel.Email && x.State == true);
 
             if (user == null)
             {
-                return false;
+                return null;
             }
 
             if (user.Password != viewModel.Password)
             {
-                return false;
+                return null;
             }
 
-            return true;
+            return user;
         }
     }
 }

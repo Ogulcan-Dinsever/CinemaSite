@@ -1,6 +1,8 @@
-﻿
+﻿@using CinemaSite.Entities;
+
 @{
     ViewBag.Title = "Anasayfa";
+    var user = (User)Session["User"];
 }
 
 
@@ -11,10 +13,15 @@
             @foreach (var item in ViewBag.Films)
             {
                 <div class="post">
-                    <div class="post_image"><img src="~/images/@item.ImageUrl" alt="@item.ImageUrl" width="600px" height="260px" /><span class="date">@item.CreatedDate</span></div>
+                    <div class="post_image"><img src="~/images/@item.ImageUrl" alt="@item.ImageUrl" width="580px" height="260px" /><span class="date">@item.CreatedDate</span></div>
                     <h2>@item.Title</h2>
                     <p>@item.Description</p>
                     <a href="/film/@item.Id">Detaya Git</a>
+                    @if (user != null && user.IsAdmin)
+                    {
+                        <a href="/edit/@item.Id">Güncelle</a>
+                        <a href="/delete/@item.Id">Sil</a>
+                    }
                 </div>
             }
         </div>
@@ -28,17 +35,7 @@
                 }
             </ul>
 
-            <div class="cleaner h50"></div>
-
-            <h3>Popular Posts</h3>
-            <ul class="popular_post">
-                <li><a href="#">Donec eu orci dolor</a>Pellentesque in nunc quam. Sed molestie ultricies ante, vel scelerisque diam varius sed.</li>
-                <li><a href="#">Aliquam bibendum vulputate</a>Auris nisl mi, aliquet ac lobortis ut, tincidunt in tortor vitae lectus dapibus pellentesque.</li>
-                <li><a href="#">Curabitur rutrum vestibulum</a>Nunc viverra vestibulum magna, nec dignissim turpis tincidunt. Donec ac nibh arcu.</li>
-                <li><a href="#">Fusce placerat ultrices</a>Integer ac ultricies nisi. Curabitur velit ante, porttitor ac feugiat a, porta ut lectus.</li>
-            </ul>
-        </div> 
-
+        </div>
         <div class="cleaner"></div>
-    </div> 
+    </div>
 </div>
