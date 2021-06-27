@@ -18,6 +18,8 @@ namespace CinemaSite.Entities
 
         public string ImageUrl { get; set; }
 
+        public Guid CategoryId { get; set; }
+
         public DateTime? CreatedDate { get; set; }
 
         public Guid? CreatedBy { get; set; }

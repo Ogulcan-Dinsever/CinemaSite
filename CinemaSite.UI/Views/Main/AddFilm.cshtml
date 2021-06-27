@@ -1,0 +1,47 @@
+﻿@model CinemaSite.Entities.Film
+
+@{
+    ViewBag.Title = "AddFilm";
+    Layout = null;
+}
+
+@using (Html.BeginForm("AddFilm", "Main", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <div class="mb-3">
+            <label for="Title" class="form-label">Başlık</label>
+            <input class="form-control" name="Title" id="Title" placeholder="Title">
+        </div>
+        <br />
+        <div class="mb-3">
+            <label for="Description" class="form-label">Açıklama</label>
+            <textarea class="form-control" name="Description" id="Description" rows="3"></textarea>
+        </div>
+        <br />
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="file">Resim Seç</label>
+            <input type="file" class="form-control" name="file" id="file">
+        </div>
+        <br />
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="CategoryId">Kategori</label>
+            <select class="form-select" name="CategoryId" id="CategoryId">
+                <option selected>Choose...</option>
+                @foreach (var item in ViewBag.Categories)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

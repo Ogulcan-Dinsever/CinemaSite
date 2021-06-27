@@ -16,7 +16,6 @@ namespace CinemaSite.DAL.EntityFramework
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Film> Film { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<CategoryFilm> CategoryFilm { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
