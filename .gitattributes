@@ -4,6 +4,16 @@
 * text=auto
 
 ###############################################################################
+# GitHub linguist configuration
+#
+# Force detection to emphasize the C# codebase while treating bundled
+# JavaScript assets as vendored so they do not dominate the language stats.
+###############################################################################
+*.cs linguist-language=C#
+CinemaSite.UI/Scripts/** linguist-vendored
+CinemaSite.UI/Templates/Js/** linguist-vendored
+
+###############################################################################
 # Set default behavior for command prompt diff.
 #
 # This is need for earlier builds of msysgit that does not have it on by
